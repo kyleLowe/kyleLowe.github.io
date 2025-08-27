@@ -34,8 +34,11 @@ function App() {
     if (!canvasRef.current) return;
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 1000);
-    camera.position.set(0, 20, 100);
+    const camera = new THREE.PerspectiveCamera(20, sizes.width / sizes.height, 0.1, 1000);
+    camera.position.set(
+59.59175271743869,
+29.97916640627271,
+63.47938369185648);
 
     // Add lights
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
@@ -58,6 +61,11 @@ function App() {
     controls.enableDamping = true;
     controls.dampingFactor = 0.05;
     controls.update();
+
+    controls.target.set(
+3.595150393092032,
+6.377301327597979,
+0.6121572902007696);
 
          // Preload and configure textures
     const loadedTextures: Record<string, THREE.Texture> = {};
@@ -113,6 +121,8 @@ function App() {
       controls.update();
       cube.rotation.x += 0.01;
       cube.rotation.y += 0.01;
+      // console.log('camera position:', camera.position);
+      // console.log('controls position:', controls.target);
       renderer.render(scene, camera);
       animationId = requestAnimationFrame(animate);
     };
