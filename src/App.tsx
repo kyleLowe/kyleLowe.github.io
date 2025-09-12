@@ -4,7 +4,6 @@ import './App.css'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import { int } from 'three/tsl';
 
 function App() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -96,7 +95,7 @@ function App() {
 	  pointer.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
     });
 
-    window.addEventListener("click", (event) => {
+    window.addEventListener("click", () => {
       if (currentIntersects.length > 0) {
         const object = currentIntersects[0].object;
 
