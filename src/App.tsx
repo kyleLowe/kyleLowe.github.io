@@ -1,9 +1,14 @@
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import * as THREE from 'three';
 import './App.css'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import About from './components/About';
+import Contact from './components/Contact';
+import Home from './components/Home';
+import Projects from './components/Projects';
+import gsap from 'gsap';
 
 function App() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -27,7 +32,37 @@ function App() {
     Third:"/textures/TextureSet3.webp",
   }
 
+  const [modalDisplay, setModalDisplay] = useState<'home' | 'about' | 'project' | 'contact' | null>('home');
 
+//Hide and show modals with GSAP
+useEffect(() => {
+  const activeModal = document.querySelector(
+    `.${modalDisplay}.modal`
+  ) as HTMLDivElement | null;
+
+  if (activeModal) {
+    // fade in the new modal
+    activeModal.style.display = "block";
+    gsap.fromTo(
+      activeModal,
+      { opacity: 0 },
+      { opacity: 1, duration: 0.5 }
+    );
+  }
+
+  // hide all the others
+  document.querySelectorAll(".modal").forEach((el) => {
+    if (!el.classList.contains(modalDisplay || "")) {
+      gsap.to(el, {
+        opacity: 0,
+        duration: 0.5,
+        onComplete: () => {
+          (el as HTMLDivElement).style.display = "none";
+        },
+      });
+    }
+  });
+}, [modalDisplay]);
 
 
   useEffect(() => {
@@ -61,11 +96,6 @@ function App() {
     renderer.setSize(sizes.width, sizes.height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-    // Example: add a cube
-    const geometry = new THREE.BoxGeometry(1, 1, 1);
-    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-    const cube = new THREE.Mesh(geometry, material);
-    scene.add(cube);
 
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
@@ -107,7 +137,21 @@ function App() {
               newWindow.opener = null;
             }
           }
-        }); 
+        });
+        console.log(object.parent?.name)
+        if (object.name && object.parent?.name.includes("AboutButton_First_Raycaster")) {
+          console.log("About button clicked");
+          setModalDisplay("about");
+        }
+        if (object.name && object.parent?.name.includes("HomeButton_First_Raycaster")) {
+          setModalDisplay("home");
+        }
+        if (object.name && object.parent?.name.includes("ProjectButton_First_Raycaster")) {
+          setModalDisplay("project");
+        }
+        if (object.name && object.parent?.name.includes("Contact_First_Raycaster")) {
+          setModalDisplay("contact");
+        }
       }
     }); 
 
@@ -158,8 +202,6 @@ function App() {
     let animationId: number;
     const animate = () => {
       controls.update();
-      cube.rotation.x += 0.01;
-      cube.rotation.y += 0.01;
       // console.log('camera position:', camera.position);
       // console.log('controls position:', controls.target);
       	// update the picking ray with the camera and pointer position
@@ -177,6 +219,7 @@ function App() {
           mesh.material instanceof THREE.MeshStandardMaterial
         ) {
           mesh.material.color.set(0xff0000);
+          console.log(mesh.name)
         }
 
       }
@@ -204,9 +247,40 @@ function App() {
 
   return (
     <div id="experience">
-      <canvas ref={canvasRef} id="experience-canvas" className="experience-canvas"></canvas>
+      <canvas
+        ref={canvasRef}
+        id="experience-canvas"
+        className="experience-canvas"
+      ></canvas>
+      <div id="websiteinfo">
+        <div
+          className="home modal"
+          style={{ display: modalDisplay === "home" ? "block" : "none" }}
+        >
+          <Home onHide={() => setModalDisplay(null)} />
+        </div>
+        <div
+          className="about modal"
+          style={{ display: modalDisplay === "about" ? "block" : "none" }}
+        >
+          <About onHide={() => setModalDisplay(null)} />
+        </div>
+        <div
+          className="project modal"
+          style={{ display: modalDisplay === "project" ? "block" : "none" }}
+        >
+          <Projects onHide={() => setModalDisplay(null)} />
+        </div>
+        <div
+          className="contact modal"
+          style={{ display: modalDisplay === "contact" ? "block" : "none" }}
+        >
+          <Contact onHide={() => setModalDisplay(null)} />
+        </div>
+      </div>
     </div>
   );
+
 }
 
 export default App
