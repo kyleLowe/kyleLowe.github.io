@@ -6,10 +6,20 @@ import type ModalProp from '../interface/ModalInterface';
 const About: React.FC<ModalProp> = ({ onHide }) => {
   return (
     <div>
-      <h2>About</h2>
+    <div className="overlay"></div>
+    <div className="window">
+      <div className="window__title-bar">
+        <span className="window__title">About</span>
+        <ModalHideButton onHide={onHide} />
+      </div>
+      <div className="window__body">
       <p>This is the About component.</p>
-      <ModalHideButton onHide={onHide} />
+      </div>
+      <div className="window__status-bar">
+        Status: About modal open
+      </div>
     </div>
+  </div>
   );
 };
 

@@ -71,9 +71,10 @@ useEffect(() => {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(20, sizes.width / sizes.height, 0.1, 1000);
     camera.position.set(
-59.59175271743869,
-29.97916640627271,
-63.47938369185648);
+52.74958451968441,
+17.86980008290608,
+55.89145232301112);
+
     const raycaster = new THREE.Raycaster();
     const pointer = new THREE.Vector2();
     const raycasterObjects: THREE.Object3D<THREE.Object3DEventMap>[] = [];
@@ -122,11 +123,23 @@ useEffect(() => {
     //Mouse object controls
     window.addEventListener("mousemove", (event) => {
     	pointer.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-	  pointer.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+	    pointer.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
     });
 
-    window.addEventListener("click", () => {
-      if (currentIntersects.length > 0) {
+    //Touch screen controls
+    window.addEventListener("touchstart", (event) => {
+      event.preventDefault();
+    	pointer.x = ( event.touches[0].clientX / window.innerWidth ) * 2 - 1;
+	    pointer.y = - ( event.touches[0].clientY / window.innerHeight ) * 2 + 1;
+    },  { passive: false } );
+
+    window.addEventListener("touchend", (event) => {
+      event.preventDefault();
+      handleRaycastingInteraction()
+    },  { passive: false } );
+
+    function handleRaycastingInteraction(){
+ if (currentIntersects.length > 0) {
         const object = currentIntersects[0].object;
 
         //Links to socials based on click
@@ -153,7 +166,8 @@ useEffect(() => {
           setModalDisplay("contact");
         }
       }
-    }); 
+    }
+    window.addEventListener("click", handleRaycastingInteraction); 
 
     // Load the model
     loader.load(
@@ -162,9 +176,9 @@ useEffect(() => {
         glb.scene.traverse((child) => {
           
           if ((child as THREE.Mesh).isMesh) {
-            console.log('Mesh name:', child.name);
+            // console.log('Mesh name:', child.name);
             (Object.keys(loadedTextures) as Array<keyof typeof loadedTextures>).forEach((key) => {
-              console.log(`Child name: ${child.parent?.name}, Checking for key: ${key}`);
+              // console.log(`Child name: ${child.parent?.name}, Checking for key: ${key}`);
               if (child.name.includes(key)) {
                 const material = new THREE.MeshStandardMaterial({
                   map: loadedTextures[key],
@@ -202,7 +216,7 @@ useEffect(() => {
     let animationId: number;
     const animate = () => {
       controls.update();
-      // console.log('camera position:', camera.position);
+      console.log('camera position:', camera.position);
       // console.log('controls position:', controls.target);
       	// update the picking ray with the camera and pointer position
       raycaster.setFromCamera( pointer, camera );
@@ -212,15 +226,17 @@ useEffect(() => {
 
       for ( let i = 0; i < currentIntersects.length; i ++ ) {
 
-        const mesh = currentIntersects[i].object as THREE.Mesh;
-        if (
-          mesh.material &&
-          'color' in mesh.material &&
-          mesh.material instanceof THREE.MeshStandardMaterial
-        ) {
-          mesh.material.color.set(0xff0000);
-          console.log(mesh.name)
-        }
+        //Highlight object red on hover
+
+        // const mesh = currentIntersects[i].object as THREE.Mesh;
+        // if (
+        //   mesh.material &&
+        //   'color' in mesh.material &&
+        //   mesh.material instanceof THREE.MeshStandardMaterial
+        // ) {
+        //   mesh.material.color.set(0xff0000);
+        //   console.log(mesh.name)
+        // }
 
       }
       if (currentIntersects.length > 0) {
@@ -252,32 +268,34 @@ useEffect(() => {
         id="experience-canvas"
         className="experience-canvas"
       ></canvas>
-      <div id="websiteinfo">
-        <div
-          className="home modal"
-          style={{ display: modalDisplay === "home" ? "block" : "none" }}
-        >
-          <Home onHide={() => setModalDisplay(null)} />
+      {modalDisplay && (
+        <div id="websiteinfo">
+          <div
+            className="home modal"
+            style={{ display: modalDisplay === "home" ? "block" : "none" }}
+          >
+            <Home onHide={() => setModalDisplay(null)} />
+          </div>
+          <div
+            className="about modal"
+            style={{ display: modalDisplay === "about" ? "block" : "none" }}
+          >
+            <About onHide={() => setModalDisplay(null)} />
+          </div>
+          <div
+            className="project modal"
+            style={{ display: modalDisplay === "project" ? "block" : "none" }}
+          >
+            <Projects onHide={() => setModalDisplay(null)} />
+          </div>
+          <div
+            className="contact modal"
+            style={{ display: modalDisplay === "contact" ? "block" : "none" }}
+          >
+            <Contact onHide={() => setModalDisplay(null)} />
+          </div>
         </div>
-        <div
-          className="about modal"
-          style={{ display: modalDisplay === "about" ? "block" : "none" }}
-        >
-          <About onHide={() => setModalDisplay(null)} />
-        </div>
-        <div
-          className="project modal"
-          style={{ display: modalDisplay === "project" ? "block" : "none" }}
-        >
-          <Projects onHide={() => setModalDisplay(null)} />
-        </div>
-        <div
-          className="contact modal"
-          style={{ display: modalDisplay === "contact" ? "block" : "none" }}
-        >
-          <Contact onHide={() => setModalDisplay(null)} />
-        </div>
-      </div>
+      )}
     </div>
   );
 
