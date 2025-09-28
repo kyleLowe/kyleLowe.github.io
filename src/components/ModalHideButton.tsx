@@ -6,8 +6,9 @@ const ModalHideButton: React.FC<ModalProp> = ({ onHide }) => {
   return (
     
     <div>
-      <button id="modal-hide-button" onClick={onHide}>
-        Hide Modal
+      <button id="modal-hide-button" onClick={onHide} className="window__btn">
+          &times;
+        <span>Close</span>
       </button>
     </div>
   );

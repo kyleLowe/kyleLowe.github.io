@@ -5,7 +5,7 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import About from './components/About';
-import Contact from './components/Contact';
+import Socials from './components/Socials';
 import Home from './components/Home';
 import Projects from './components/Projects';
 import gsap from 'gsap';
@@ -292,7 +292,7 @@ useEffect(() => {
             className="contact modal"
             style={{ display: modalDisplay === "contact" ? "block" : "none" }}
           >
-            <Contact onHide={() => setModalDisplay(null)} />
+            <Socials onHide={() => setModalDisplay(null)} />
           </div>
         </div>
       )}
