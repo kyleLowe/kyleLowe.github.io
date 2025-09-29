@@ -79,7 +79,7 @@ useEffect(() => {
     const pointer = new THREE.Vector2();
     const raycasterObjects: THREE.Object3D<THREE.Object3DEventMap>[] = [];
     let currentIntersects: string | any[] = [];
-
+    let currentHoveredObject: THREE.Object3D[] | null = [];
     const socialLinks = {
       Linkedin: "https://www.linkedin.com/in/kyle-lowe-90b232233/",
       Github: "https://github.com/kyleLowe",
@@ -99,9 +99,17 @@ useEffect(() => {
 
 
     const controls = new OrbitControls(camera, renderer.domElement);
+
+    //Control restrictions
     controls.enableDamping = true;
     controls.dampingFactor = 0.05;
     controls.update();
+    controls.minDistance = 10;
+    controls.maxDistance = 100;
+    controls.minPolarAngle = 0;
+    controls.maxPolarAngle = Math.PI / 2;
+    controls.minAzimuthAngle = 0;
+    controls.maxAzimuthAngle = Math.PI / 2;
 
     //Initial camera position
     controls.target.set(
@@ -186,9 +194,12 @@ useEffect(() => {
                 });
                 (child as THREE.Mesh).material = material;
               }
-              if (child.name.includes("Raycaster") || child.parent?.name.includes("Raycaster")) {
+              if (child.parent?.name.includes("Raycaster") || child.name.includes("Raycaster")) {
                 raycasterObjects.push(child);
-                console.log('Added to raycaster objects:', child.name);
+                child.userData.intialScale = new THREE.Vector3().copy(child.scale);
+                child.userData.intialPosition = new THREE.Vector3().copy(child.position);
+                child.userData.intialRotation = new THREE.Euler().copy(child.rotation);
+                child.userData.isAnimating = false
               }
             });
           }
@@ -213,10 +224,29 @@ useEffect(() => {
     };
     window.addEventListener('resize', handleResize);
 
+    //Hover Animation
+    function playHoverAnimation (object: THREE.Object3D, hover: boolean) {
+      gsap.killTweensOf(object.scale);
+      if(hover){
+        gsap.to(object.scale, {
+          x: object.userData.intialScale.x * 1.2,
+          y: object.userData.intialScale.y * 1.2,
+          z: object.userData.intialScale.z * 1.2,
+          duration: 0.1,
+          ease: "bounce.out",
+        });
+      }else{
+        gsap.to(object.scale, {
+          x: object.userData.intialScale.x,
+          y: object.userData.intialScale.y,
+          z: object.userData.intialScale.z
+      })
+    }
+  }
     let animationId: number;
     const animate = () => {
       controls.update();
-      console.log('camera position:', camera.position);
+      // console.log('camera position:', camera.position);
       // console.log('controls position:', controls.target);
       	// update the picking ray with the camera and pointer position
       raycaster.setFromCamera( pointer, camera );
@@ -239,11 +269,44 @@ useEffect(() => {
         // }
 
       }
-      if (currentIntersects.length > 0) {
-        document.body.style.cursor = 'pointer';
+if (currentIntersects.length > 0) {
+  const hoveredObject = currentIntersects[0].object;
+  const parentObject = scene.getObjectByName(hoveredObject.parent?.name || '');
 
-      }
+  // Determine which objects to hover
+  let newHoveredObjects: THREE.Object3D[] = [];
+  if (hoveredObject.name.includes("Raycaster")) {
+    newHoveredObjects = [hoveredObject];
+  } else if (parentObject) {
+    newHoveredObjects = parentObject.children;
+  } else {
+    newHoveredObjects = [hoveredObject];
+  }
+
+  // Remove hover from previous objects
+  if (currentHoveredObject && currentHoveredObject.length > 0) {
+    currentHoveredObject.forEach(child => {
+      playHoverAnimation(child, false);
+    });
+  }
+
+  // Apply hover to new objects
+  newHoveredObjects.forEach(child => {
+    playHoverAnimation(child, true);
+  });
+
+  // Update the hovered objects array
+  currentHoveredObject = newHoveredObjects;
+
+  document.body.style.cursor = 'pointer';
+}
       else{
+          if(currentHoveredObject){
+            currentHoveredObject.forEach(child => {
+            playHoverAnimation(child, false);
+          });
+            currentHoveredObject = [];
+          }
         document.body.style.cursor = 'default';
       }
 
