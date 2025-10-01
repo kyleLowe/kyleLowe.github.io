@@ -120,7 +120,7 @@ manager.onLoad = function () {
     handleEnter();
   });
 
-  loadingButton.addEventListener("click", (e) => {
+  loadingButton.addEventListener("click", () => {
     if (touchHappened) return;
     handleEnter();
   });
