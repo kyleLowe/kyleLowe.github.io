@@ -17,21 +17,10 @@ function App() {
     width: window.innerWidth,
     height: window.innerHeight
   };
+  useEffect(() => {
 
-  //Loader
-  const textureLoader = new THREE.TextureLoader();
-  const dracoLoader = new DRACOLoader();
-  // Specify path to a folder containing WASM/JS decoding libraries.
-  dracoLoader.setDecoderPath( '/draco/' );
-
-  const loader = new GLTFLoader();
-  loader.setDRACOLoader( dracoLoader );
-
-  const textureMap = {
-    First:"/textures/TextureSet1.webp",
-    Second:"/textures/TextureSet2.webp",
-    Third:"/textures/TextureSet3.webp",
-  }
+  }, []);
+  
 
   const [modalDisplay, setModalDisplay] = useState<'home' | 'about' | 'project' | 'contact' | null>('home');
 
@@ -68,6 +57,110 @@ useEffect(() => {
 
   useEffect(() => {
     if (!canvasRef.current) return;
+
+    //Loader
+  const textureLoader = new THREE.TextureLoader();
+  const dracoLoader = new DRACOLoader();
+  // Specify path to a folder containing WASM/JS decoding libraries.
+  dracoLoader.setDecoderPath( '/draco/' );
+
+  const manager = new THREE.LoadingManager();
+  let touchHappened = false;
+
+  const loadingScreen = document.querySelector('.loading-screen') as HTMLDivElement;
+  const loadingButton = document.querySelector('.loading-screen-button') as HTMLDivElement;
+
+  
+manager.onLoad = function () {
+  loadingButton.style.border = "8px solid #2a0f4e";
+  loadingButton.style.background = "#401d49";
+  loadingButton.style.color = "#e6dede";
+  loadingButton.style.boxShadow = "rgba(0, 0, 0, 0.24) 0px 3px 8px";
+  loadingButton.textContent = "Enter!";
+  loadingButton.style.cursor = "pointer";
+  loadingButton.style.transition =
+    "transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)";
+  let isDisabled = false;
+
+  // noSoundButton.textContent = "Enter without Sound :(";
+
+  function handleEnter() {
+    if (isDisabled) return;
+
+    // noSoundButton.textContent = "";
+    loadingButton.style.cursor = "default";
+    loadingButton.style.border = "8px solid #6e5e9c";
+    loadingButton.style.background = "#ead7ef";
+    loadingButton.style.color = "#6e5e9c";
+    loadingButton.style.boxShadow = "none";
+    loadingButton.textContent = "Welcome to my website";
+    loadingScreen.style.background = "#ead7ef";
+    isDisabled = true;
+
+    // if (!withSound) {
+    //   isMuted = true;
+    //   updateMuteState(true);
+
+    //   soundOnSvg.style.display = "none";
+    //   soundOffSvg.style.display = "block";
+    // } else {
+    //   backgroundMusic.play();
+    // }
+
+    playReveal();
+  }
+
+  loadingButton.addEventListener("mouseenter", () => {
+    loadingButton.style.transform = "scale(1.3)";
+  });
+
+  loadingButton.addEventListener("touchend", (e) => {
+    touchHappened = true;
+    e.preventDefault();
+    handleEnter();
+  });
+
+  loadingButton.addEventListener("click", (e) => {
+    if (touchHappened) return;
+    handleEnter();
+  });
+
+  loadingButton.addEventListener("mouseleave", () => {
+    loadingButton.style.transform = "none";
+  });
+
+};
+
+function playReveal() {
+  const tl = gsap.timeline();
+
+  tl.to(loadingScreen, {
+    scale: 0.5,
+    duration: 1.2,
+    delay: 0.25,
+    ease: "back.in(1.8)",
+  }).to(
+    loadingScreen,
+    {
+      y: "200vh",
+      transform: "perspective(1000px) rotateX(45deg) rotateY(-35deg)",
+      duration: 1.2,
+      ease: "back.in(1.8)",
+      onComplete: () => {
+        loadingScreen.remove();
+      },
+    },
+    "-=0.1"
+  );
+}
+  const loader = new GLTFLoader(manager);
+  loader.setDRACOLoader( dracoLoader );
+
+  const textureMap = {
+    First:"/textures/TextureSet1.webp",
+    Second:"/textures/TextureSet2.webp",
+    Third:"/textures/TextureSet3.webp",
+  }
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(20, sizes.width / sizes.height, 0.1, 1000);
@@ -332,6 +425,10 @@ if (currentIntersects.length > 0) {
         id="experience-canvas"
         className="experience-canvas"
       ></canvas>
+      <div className="loading-screen">
+        <div className="loading-screen-button">Loading...</div>
+      </div>
+
       {modalDisplay && (
         <div id="websiteinfo">
           <div
