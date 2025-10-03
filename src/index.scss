@@ -43,7 +43,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  font-size: 32px;
+  font-size: 24px;
   transform: translate(-50%, -50%);
   z-index: 999;
   // Remove or comment out the background-color so overlay/window styles show
@@ -91,6 +91,7 @@
   padding: 13px var(--default-padding);
   display: flex;
   align-items: center;
+  font-size: 100px;
   justify-content: space-between;
   cursor: default;
   user-select: none;
@@ -100,6 +101,8 @@
 
 .window__body {
   flex-grow: 1;
+  text-align: left;
+
   background-color: white;
   padding: var(--default-padding);
   overflow-y: auto;
@@ -115,6 +118,10 @@
   &::-webkit-scrollbar-thumb {
     background: #4d21c3;
   }
+}
+
+.window__body p {
+  margin-left: 10px;
 }
 
 .window__btn {
@@ -149,7 +156,7 @@
 .window__title {
   line-height: 1;
   font-weight: 500;
-  font-size: 1rem;
+  font-size: 1.5rem;
 }
 
 pre {
@@ -196,8 +203,9 @@ pre {
   border-radius: 4px;
 }
 
-.loading-screen-button{
+.loading-screen-button, .loading-screen-button-nosound{
   font-family: "Motley Forces";
+  flex-direction: row; // <--- Add this line
   display: flex;
   justify-content: center;
   align-items: center;

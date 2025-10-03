@@ -12,10 +12,7 @@ const Projects: React.FC<ModalProp> = ({ onHide }) => {
         <ModalHideButton onHide={onHide} />
       </div>
       <div className="window__body">
-      <p>TThis is the Projects component.</p>
-      </div>
-      <div className="window__status-bar">
-        Status: Projects modal open
+      <p>WIP</p>
       </div>
     </div>
   </div>

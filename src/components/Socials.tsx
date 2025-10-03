@@ -18,9 +18,6 @@ Check out my university GitHub: <a  target="_blank" rel="noopener noreferrer" hr
 
 </p>
       </div>
-      <div className="window__status-bar">
-        Status: Contact modal open
-      </div>
     </div>
   </div>
     );

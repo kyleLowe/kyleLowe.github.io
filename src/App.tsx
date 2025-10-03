@@ -10,6 +10,7 @@ import Socials from './components/Socials';
 import Home from './components/Home';
 import Projects from './components/Projects';
 import gsap from 'gsap';
+import {Howl} from 'howler';
 
 function App() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -17,14 +18,17 @@ function App() {
     width: window.innerWidth,
     height: window.innerHeight
   };
-  useEffect(() => {
 
-  }, []);
+  const music = [
+    "/sounds/Catherine.mp3"
+  ]
   
 
-  const [modalDisplay, setModalDisplay] = useState<'home' | 'about' | 'project' | 'contact' | null>('home');
+  
+  const [backgroundMusicOn, setBackgroundMusicOn] = useState(false);
+  const [modalDisplay, setModalDisplay] = useState<'home' | 'about' | 'project' | 'contact' | null>(null);
 
-//Hide and show modals with GSAP
+//Hide and show modals with GSAP useEffect
 useEffect(() => {
   const activeModal = document.querySelector(
     `.${modalDisplay}.modal`
@@ -54,10 +58,24 @@ useEffect(() => {
   });
 }, [modalDisplay]);
 
+  //Toggles background music on and off
+  useEffect(() => {
+    const backgroundMusic = new Howl({
+      src: music,
+      loop: true,
+      volume: 0.02,
+    })
+    if (backgroundMusicOn){
+      backgroundMusic.play();
+    }else{
+      backgroundMusic.stop();
+    }
+    
+  }, [backgroundMusicOn])
+
 
   useEffect(() => {
     if (!canvasRef.current) return;
-
     //Loader
   const textureLoader = new THREE.TextureLoader();
   const dracoLoader = new DRACOLoader();
@@ -67,9 +85,10 @@ useEffect(() => {
   const manager = new THREE.LoadingManager();
   let touchHappened = false;
 
+  //Loading scene elements
   const loadingScreen = document.querySelector('.loading-screen') as HTMLDivElement;
   const loadingButton = document.querySelector('.loading-screen-button') as HTMLDivElement;
-
+  const loadingButtonWithoutSound = document.querySelector('.loading-screen-button-nosound') as HTMLDivElement;
   
 manager.onLoad = function () {
   loadingButton.style.border = "8px solid #2a0f4e";
@@ -79,6 +98,15 @@ manager.onLoad = function () {
   loadingButton.textContent = "Enter!";
   loadingButton.style.cursor = "pointer";
   loadingButton.style.transition =
+    "transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)";
+
+  loadingButtonWithoutSound.style.border = "8px solid #2a0f4e";
+  loadingButtonWithoutSound.style.background = "#401d49";
+  loadingButtonWithoutSound.style.color = "#e6dede";
+  loadingButtonWithoutSound.style.boxShadow = "rgba(0, 0, 0, 0.24) 0px 3px 8px";
+  loadingButtonWithoutSound.textContent = "Enter without sound.";
+  loadingButtonWithoutSound.style.cursor = "pointer";
+  loadingButtonWithoutSound.style.transition =
     "transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)";
   let isDisabled = false;
 
@@ -122,11 +150,33 @@ manager.onLoad = function () {
 
   loadingButton.addEventListener("click", () => {
     if (touchHappened) return;
+    loadingButtonWithoutSound.remove();
+    setBackgroundMusicOn(true);
     handleEnter();
   });
 
   loadingButton.addEventListener("mouseleave", () => {
     loadingButton.style.transform = "none";
+  });
+
+    loadingButtonWithoutSound.addEventListener("mouseenter", () => {
+    loadingButtonWithoutSound.style.transform = "scale(1.3)";
+  });
+
+  loadingButtonWithoutSound.addEventListener("touchend", (e) => {
+    touchHappened = true;
+    e.preventDefault();
+    handleEnter();
+  });
+
+  loadingButtonWithoutSound.addEventListener("click", () => {
+    if (touchHappened) return;
+    loadingButtonWithoutSound.remove();
+    handleEnter();
+  });
+
+  loadingButtonWithoutSound.addEventListener("mouseleave", () => {
+    loadingButtonWithoutSound.style.transform = "none";
   });
 
 };
@@ -148,6 +198,7 @@ function playReveal() {
       ease: "back.in(1.8)",
       onComplete: () => {
         loadingScreen.remove();
+        setModalDisplay("home");
       },
     },
     "-=0.1"
@@ -157,9 +208,9 @@ function playReveal() {
   loader.setDRACOLoader( dracoLoader );
 
   const textureMap = {
-    First:"/textures/TextureSet1.webp",
-    Second:"/textures/TextureSet2.webp",
-    Third:"/textures/TextureSet3.webp",
+    First:"textures/TextureSet1.webp",
+    Second:"textures/TextureSet2.webp",
+    Third:"textures/TextureSet3.webp",
   }
 
     const scene = new THREE.Scene();
@@ -427,6 +478,7 @@ if (currentIntersects.length > 0) {
       ></canvas>
       <div className="loading-screen">
         <div className="loading-screen-button">Loading...</div>
+        <div className="loading-screen-button-nosound"> </div>
       </div>
 
       {modalDisplay && (
