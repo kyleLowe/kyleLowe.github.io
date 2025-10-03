@@ -33,6 +33,7 @@ const About: React.FC<ModalProp> = ({ onHide }) => {
             <br />
             Chinougijutsu - AI Intern (Nov 2023 - Feb 2024)
             <br />
+            Middlemore Hospital Laboratory - Lab Assisstant(Feb 2022 - Apr 2022)
           </p>
 
           <h2>Qualifications</h2>
