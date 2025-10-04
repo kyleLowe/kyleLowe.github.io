@@ -14,6 +14,14 @@ import { Howl } from "howler";
 
 function App() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  // create Howl only once
+  const [backgroundMusic, setBackgroundMusic] = useState<Howl>(
+    new Howl({
+      src: ["/sounds/Catherine.mp3"],
+      loop: true,
+      volume: 0.02,
+    })
+  );
   const sizes = {
     width: window.innerWidth,
     height: window.innerHeight,
@@ -54,15 +62,12 @@ function App() {
 
   //Toggles background music on and off
   useEffect(() => {
-    const backgroundMusic = new Howl({
-      src: music,
-      loop: true,
-      volume: 0.02,
-    });
     if (backgroundMusicOn) {
+      console.log("playing music");
       backgroundMusic.play();
     } else {
-      backgroundMusic.stop();
+      console.log("pausing music");
+      backgroundMusic.pause();
     }
   }, [backgroundMusicOn]);
 
@@ -504,6 +509,28 @@ function App() {
 
   return (
     <div id="experience">
+      <button
+        className="mute-btn"
+        style={{
+          position: "fixed",
+          top: "24px",
+          right: "32px",
+          zIndex: 100000,
+          background: "#8c5afb",
+          color: "#fff",
+          border: "none",
+          borderRadius: "50%",
+          width: "48px",
+          height: "48px",
+          fontSize: "1.5rem",
+          cursor: "pointer",
+          boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
+        }}
+        onClick={() => setBackgroundMusicOn((prev) => !prev)}
+        aria-label={backgroundMusicOn ? "Mute music" : "Unmute music"}
+      >
+        {backgroundMusicOn ? "🔊" : "🔇"}
+      </button>
       <canvas
         ref={canvasRef}
         id="experience-canvas"
