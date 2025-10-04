@@ -15,7 +15,7 @@ import { Howl } from "howler";
 function App() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   // create Howl only once
-  const [backgroundMusic, setBackgroundMusic] = useState<Howl>(
+  const [backgroundMusic] = useState<Howl>(
     new Howl({
       src: ["/sounds/Catherine.mp3"],
       loop: true,
@@ -26,8 +26,6 @@ function App() {
     width: window.innerWidth,
     height: window.innerHeight,
   };
-
-  const music = ["/sounds/Catherine.mp3"];
 
   const [backgroundMusicOn, setBackgroundMusicOn] = useState(false);
   const [modalDisplay, setModalDisplay] = useState<
