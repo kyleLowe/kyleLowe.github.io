@@ -40,8 +40,9 @@ const About: React.FC<ModalProp> = ({ onHide }) => {
           <p>
             Bachelor of Engineering (Hons) Software, First Class - University of
             Auckland 2021 - 2024 <br />
-            Oracle Cloud Infrastructure 2025 Foundations Associate - 2025 <br />
-            Fundamentals of Digital Marketing – Google Digital Garage 2021
+            Oracle Cloud Infrastructure 2025 Foundations Associate - June 2025{" "}
+            <br />
+            Fundamentals of Digital Marketing - Google Digital Garage 2021
           </p>
         </div>
       </div>
