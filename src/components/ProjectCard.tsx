@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardMedia, CardContent, Typography, Box } from "@mui/material";
+import { Card, CardMedia, Typography, Box } from "@mui/material";
 
 export interface ProjectCardProps {
   title: string;
@@ -10,8 +10,8 @@ export interface ProjectCardProps {
 }
 
 /**
- * A reusable project card component.
- * Displays an image with an overlaid title and optional description.
+ * A reusable project card component with a hover overlay effect.
+ * Title is always visible; description fades in on hover.
  */
 const ProjectCard: React.FC<ProjectCardProps> = ({
   title,
@@ -28,19 +28,51 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         borderRadius: 2,
         overflow: "hidden",
         cursor: onClick ? "pointer" : "default",
+        boxShadow: 4,
+        transition: "transform 0.3s ease, box-shadow 0.3s ease",
+        "&:hover": {
+          transform: "scale(1.02)",
+          boxShadow: 8,
+        },
+        "&:hover .overlay": {
+          opacity: 1,
+        },
+        "&:hover .description": {
+          opacity: 1,
+          transform: "translateY(0)",
+        },
       }}
     >
-      {/* Project image */}
+      {/* Background Image */}
       {image && (
         <CardMedia
           component="img"
           image={image}
           alt={alt}
-          sx={{ width: "100%", height: 220, objectFit: "cover" }}
+          sx={{
+            width: "100%",
+            height: 220,
+            objectFit: "cover",
+            transition: "transform 0.4s ease",
+            "&:hover": { transform: "scale(1.05)" },
+          }}
         />
       )}
 
-      {/* Text overlay */}
+      {/* Gradient overlay */}
+      <Box
+        className="overlay"
+        sx={{
+          position: "absolute",
+          inset: 0,
+          background:
+            "linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.1))",
+          opacity: 0.7,
+          transition: "opacity 0.3s ease",
+        }}
+      />
+
+      {/* Text container (always visible title, hidden description) */}
       <Box
         sx={{
           position: "absolute",
@@ -49,22 +81,40 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           width: "100%",
           color: "white",
           p: 2,
-          background:
-            "linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.1))",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "flex-end",
+          zIndex: 2,
         }}
       >
-        <Typography variant="h6" fontWeight="bold">
+        {/* Title — always visible */}
+        <Typography
+          variant="h6"
+          fontWeight="bold"
+          sx={{
+            textShadow: "0 2px 4px rgba(0,0,0,0.5)",
+          }}
+        >
           {title}
         </Typography>
+
+        {/* Description — fade/slide in on hover */}
         {description && (
-          <Typography variant="body2" sx={{ opacity: 0.8 }}>
+          <Typography
+            className="description"
+            variant="body2"
+            sx={{
+              opacity: 0,
+              transform: "translateY(10px)",
+              transition: "all 0.3s ease",
+              textShadow: "0 2px 4px rgba(0,0,0,0.5)",
+              lineHeight: 1.3,
+            }}
+          >
             {description}
           </Typography>
         )}
       </Box>
-
-      {/* Optional content slot */}
-      <CardContent>{/* Future custom elements */}</CardContent>
     </Card>
   );
 };

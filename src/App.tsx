@@ -29,8 +29,19 @@ function App() {
 
   const [backgroundMusicOn, setBackgroundMusicOn] = useState(false);
   const [modalDisplay, setModalDisplay] = useState<
-    "home" | "about" | "project" | "contact" | null
+    "home" | "about" | "project" | "social" | null
   >(null);
+
+  const modalDisplayRef = useRef<
+    "home" | "about" | "project" | "social" | null
+  >(null);
+
+  useEffect(() => {
+    console.log("Modal display changed:", modalDisplay);
+    console.log("Modal display ref:", modalDisplayRef.current);
+    modalDisplayRef.current = modalDisplay;
+    console.log("Modal display after:", modalDisplayRef.current);
+  }, [modalDisplay]);
 
   //Hide and show modals with GSAP useEffect
   useEffect(() => {
@@ -309,6 +320,7 @@ function App() {
     );
 
     function handleRaycastingInteraction() {
+      if (modalDisplayRef.current !== null) return;
       if (currentIntersects.length > 0) {
         const object = currentIntersects[0].object;
 
@@ -321,7 +333,7 @@ function App() {
             }
           }
         });
-        console.log(object.parent?.name);
+        console.log("intersects", object.parent?.name);
         if (
           object.name &&
           object.parent?.name.includes("AboutButton_First_Raycaster")
@@ -345,7 +357,7 @@ function App() {
           object.name &&
           object.parent?.name.includes("Contact_First_Raycaster")
         ) {
-          setModalDisplay("contact");
+          setModalDisplay("social");
         }
       }
     }
@@ -450,7 +462,8 @@ function App() {
         //   console.log(mesh.name)
         // }
       }
-      if (currentIntersects.length > 0) {
+
+      if (currentIntersects.length > 0 && modalDisplayRef.current === null) {
         const hoveredObject = currentIntersects[0].object;
         const parentObject = scene.getObjectByName(
           hoveredObject.parent?.name || ""
@@ -560,8 +573,8 @@ function App() {
             <Projects onHide={() => setModalDisplay(null)} />
           </div>
           <div
-            className="contact modal"
-            style={{ display: modalDisplay === "contact" ? "block" : "none" }}
+            className="social modal"
+            style={{ display: modalDisplay === "social" ? "block" : "none" }}
           >
             <Socials onHide={() => setModalDisplay(null)} />
           </div>
