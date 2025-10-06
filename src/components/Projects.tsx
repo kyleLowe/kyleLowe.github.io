@@ -6,7 +6,6 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import CardMedia from "@mui/material/CardMedia";
 import ProjectCard from "./ProjectCard";
 
 const Projects: React.FC<ModalProp> = ({ onHide }) => {
