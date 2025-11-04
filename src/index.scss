@@ -221,3 +221,22 @@ pre {
   border: none;
   font-size: 42px;
 }
+
+/* Project details overlay/window so details render above the main modal */
+.project-details-overlay {
+  position: fixed;
+  inset: 0; /* top:0; right:0; bottom:0; left:0 */
+  width: 100vw;
+  height: 100vh;
+  z-index: 2000; /* above .overlay/.window (1000/1001) */
+  pointer-events: auto;
+}
+
+.project-details-window {
+  position: fixed;
+  inset: 0; /* top:0; right:0; bottom:0; left:0 */
+  width: 100vw;
+  height: 100vh;
+  z-index: 2001; /* above .overlay/.window (1000/1001) */
+  pointer-events: auto;
+}
