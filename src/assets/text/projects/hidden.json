@@ -1,0 +1,20 @@
+{
+  "title": "Internal Admin Tool",
+  "description": "I’ve worked at Hidden Singapore, a company that creates self-guided games to show people around the local areas of Singapore. I primarily worked on developing their internal app, which they used to manage the company's data, including payment and game creation information. The primary area I worked on was developing an event creation page for other teams within the company to use for creating events for other companies, promoting team building. I designed the page layout, implemented the front-end, and wrote documentation for the endpoints required from the database. I also helped with bug fixing and implementing small features throughout other areas of the admin app.",
+  "date": "January 2025 - March 2025",
+  "location": "Hidden - Singapore",
+  "image": "/textures/projects/work/Hidden.jpg",
+  "technologies": [
+    "React",
+    "TypeScript",
+    "Airtable",
+    "Supabase",
+    "PostgreSQL",
+    "GitHub"
+  ],
+  "learnings": [
+    "Working with a React application in a professional setting",
+    "working with legacy code",
+    "working with developing software without a technical background"
+  ]
+}

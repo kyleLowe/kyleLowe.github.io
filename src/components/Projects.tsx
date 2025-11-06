@@ -9,6 +9,7 @@ import Box from "@mui/material/Box";
 import ProjectCard from "./ProjectCard";
 import ProjectDetailsCard from "./ProjectDetailsCard";
 import type ProjectDetailsInterface from "../interface/ProjectDetailsInterface";
+import getProjectDescriptionData from "../utils/ProjectDescriptions";
 
 const Projects: React.FC<ModalProp> = ({ onHide }) => {
   const [selectedProject, setSelectedProject] =
@@ -21,6 +22,8 @@ const Projects: React.FC<ModalProp> = ({ onHide }) => {
   const handleCloseDetails = () => {
     setSelectedProject(null);
   };
+  const hiddenData = getProjectDescriptionData("hidden");
+  console.log(hiddenData);
   return (
     <div>
       <div className="overlay"></div>
@@ -45,27 +48,7 @@ const Projects: React.FC<ModalProp> = ({ onHide }) => {
                   description="I developed an internal admin tool that is used by staff to manage data at the company as well as day to day operations."
                   image="/textures/projects/work/Hidden.jpg"
                   onClick={() =>
-                    handleProjectClick({
-                      title: "Internal Admin Tool",
-                      description:
-                        "I developed an internal admin tool that helps staff manage data and daily operations efficiently.",
-                      date: "January 2025 - March 2025",
-                      location: "Hidden - Singapore",
-                      image: "/textures/projects/work/Hidden.jpg",
-                      technologies: [
-                        "React",
-                        "TypeScript",
-                        "Airtable",
-                        "Supabase",
-                        "PostgreSQL",
-                        "GitHub",
-                      ],
-                      learnings: [
-                        "Working with a React application in a professional setting",
-                        "working with legacy code",
-                        "working with developing software without a technical background",
-                      ],
-                    })
+                    handleProjectClick(getProjectDescriptionData("hidden"))
                   }
                 />
               </Grid>

@@ -14,44 +14,34 @@ const ProjectDetailsCard: React.FC<ProjectDetailsInterface> = ({
   learnings,
 }) => {
   return (
-    <div className="rounded-2xl shadow-md border p-4 bg-white hover:shadow-lg transition">
-      <div className="flex justify-between text-xs text-gray-500">
+    <div className="">
+      <div className="">
         <Grid container spacing={2}>
           <Grid size={4}>
             <Stack spacing={1}>
-              {technologies && <span>{technologies.join(", ")}</span>}
-              {date && <span>{date}</span>}
-              {location && <span>{location}</span>}
+              {location && <span>Location: {location}</span>}
+              {date && <span>Date: {date}</span>}
+              {technologies && (
+                <span>Tech Stack: {technologies.join(", ")}</span>
+              )}
               {githubLink && (
                 <a href={githubLink} target="_blank" rel="noopener noreferrer">
-                  GitHub
+                  Link to Gihub Repository
                 </a>
               )}
             </Stack>
           </Grid>
           <Grid size={8}>
             {image && (
-              <img
-                src={image}
-                alt={title}
-                className="mb-2"
-                style={{
-                  display: "block",
-                  margin: "0 auto",
-                  maxWidth: "100%",
-                  maxHeight: "40vh", // constrain to modal height
-                  width: "auto",
-                  height: "auto",
-                  objectFit: "contain",
-                }}
-              />
+              <img src={image} alt={title} className="project-details-image" />
             )}
           </Grid>
+          <Stack spacing={1}>
+            {description && <span>{description}</span>}
+
+            {learnings && <span>{learnings.join(", ")}</span>}
+          </Stack>
         </Grid>
-
-        {description && <span>{description}</span>}
-
-        {learnings && <span>{learnings.join(", ")}</span>}
       </div>
     </div>
   );

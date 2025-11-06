@@ -7,4 +7,5 @@ export default interface ProjectDetailsInterface {
   technologies?: string[];
   image?: string;
   learnings?: string[];
+  linkToCompany?: string;
 }
