@@ -12,6 +12,7 @@ const ProjectDetailsCard: React.FC<ProjectDetailsInterface> = ({
   technologies,
   image,
   learnings,
+  linkToCompany,
 }) => {
   return (
     <div className="">
@@ -29,6 +30,15 @@ const ProjectDetailsCard: React.FC<ProjectDetailsInterface> = ({
                   Link to Gihub Repository
                 </a>
               )}
+              {linkToCompany && (
+                <a
+                  href={linkToCompany}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Company Website
+                </a>
+              )}
             </Stack>
           </Grid>
           <Grid size={8}>
@@ -39,7 +49,7 @@ const ProjectDetailsCard: React.FC<ProjectDetailsInterface> = ({
           <Stack spacing={1}>
             {description && <span>{description}</span>}
 
-            {learnings && <span>{learnings.join(", ")}</span>}
+            {/* {learnings && <span>{learnings.join(", ")}</span>} */}
           </Stack>
         </Grid>
       </div>

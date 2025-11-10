@@ -22,8 +22,6 @@ const Projects: React.FC<ModalProp> = ({ onHide }) => {
   const handleCloseDetails = () => {
     setSelectedProject(null);
   };
-  const hiddenData = getProjectDescriptionData("hidden");
-  console.log(hiddenData);
   return (
     <div>
       <div className="overlay"></div>
@@ -158,6 +156,7 @@ const Projects: React.FC<ModalProp> = ({ onHide }) => {
                 technologies={selectedProject.technologies}
                 image={selectedProject.image}
                 learnings={selectedProject.learnings}
+                linkToCompany={selectedProject.linkToCompany}
               />
             </div>
           </div>
