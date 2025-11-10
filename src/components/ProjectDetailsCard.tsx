@@ -11,7 +11,7 @@ const ProjectDetailsCard: React.FC<ProjectDetailsInterface> = ({
   githubLink,
   technologies,
   image,
-  learnings,
+  // learnings,
   linkToCompany,
 }) => {
   return (
