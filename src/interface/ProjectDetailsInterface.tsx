@@ -4,11 +4,9 @@ export default interface ProjectDetailsInterface {
   date: string;
   technologies: string[];
   image: string;
-  type: "work" | "personal" | "university";
 }
 
 export interface WorkProjectDetailsInterface extends ProjectDetailsInterface {
-  type: "work";
   company: string;
   location: string;
   linkToCompany: string;
@@ -16,13 +14,11 @@ export interface WorkProjectDetailsInterface extends ProjectDetailsInterface {
 
 export interface PersonalProjectDetailsInterface
   extends ProjectDetailsInterface {
-  type: "personal";
   githubLink: string;
 }
 
 export interface UniversityProjectDetailsInterface
   extends ProjectDetailsInterface {
-  type: "university";
   course: string;
   githubLink: string;
 }

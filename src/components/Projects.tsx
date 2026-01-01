@@ -74,20 +74,28 @@ const Projects: React.FC<ModalProp> = ({ onHide }) => {
             </Typography>
             <Grid container spacing={2}>
               <Grid size={4}>
-                <Card sx={{ minWidth: 275 }}>
-                  <CardContent>
-                    <Typography variant="h6">Project 1</Typography>
-                    <Typography>Description of Project 1</Typography>
-                  </CardContent>
-                </Card>
+                <ProjectCard
+                  title="7 Days DevOps Challenge"
+                  alt=""
+                  description="I've done a 7 day DevOps challenged designed by nextwork to learn more about DevOps and AWS"
+                  image="/textures/projects/personal/7daysDevOps.png"
+                  onClick={() =>
+                    handleProjectClick(getProjectDescriptionData("7daysDevOps"))
+                  }
+                />
               </Grid>
               <Grid size={4}>
-                <Card sx={{ minWidth: 275 }}>
-                  <CardContent>
-                    <Typography variant="h6">Project 2</Typography>
-                    <Typography>Description of Project 2</Typography>
-                  </CardContent>
-                </Card>
+                <ProjectCard
+                  title="Bed Fall Detection Sensor"
+                  alt=""
+                  description="I developed a bed fall detection sensor to use AI to detect when a patient would potentially fall out of bed."
+                  image="/textures/projects/work/Chinougijutsu.jpg"
+                  onClick={() =>
+                    handleProjectClick(
+                      getProjectDescriptionData("chinougijutsu")
+                    )
+                  }
+                />
               </Grid>
             </Grid>
           </Box>

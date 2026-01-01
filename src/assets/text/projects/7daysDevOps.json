@@ -1,0 +1,10 @@
+{
+  "title": "7 Days DevOps Challenge",
+  "description": "For this project, I wanted to learn more about DevOps and AWS, which is why I decided to do the 7-day DevOps Challenge created by NextWork. Over the course of the project, I set up a web app in AWS, set up IAM roles and policies, connected a GitHub repo to it, stored dependencies in CodeArtifact, packaged an App with CodeBuild, deployed an app with CodeDeploy and set up a CI/CD code pipeline to automate the deployment of the app.",
+  "date": "August 2025",
+  "image": "/textures/projects/personal/7daysDevOps.png",
+  "technologies": ["AWS, Github, Java, SSH"],
+  "learnings": ["Learned about how to build and deploy a web application on AWS, Learned to use AWS tools, including EC2 instances, S3 storage buckets, CodeBuild, CodeArtifact, CodeDeploy, CodePipeline, IAM Roles and Policies, and SSH connections."],
+  "github": "https://github.com/kyleLowe/nextwork-web-project-devOps",
+  "linkToCompany": "https://www.nextwork.org/"
+}
