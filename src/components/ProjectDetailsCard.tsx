@@ -1,18 +1,25 @@
 // ProjectDetailsCard.tsx
 import React from "react";
-import type ProjectDetailsInterface from "../interface/ProjectDetailsInterface";
 import { Grid, Stack } from "@mui/material";
+import type ProjectDetails from "../interface/ProjectDetailsInterface";
 
-const ProjectDetailsCard: React.FC<ProjectDetailsInterface> = ({
+const ProjectDetailsCard: React.FC<ProjectDetails> = ({
   title,
   description,
   date,
-  location,
-  githubLink,
   technologies,
   image,
-  // learnings,
+  // @ts-ignore
+  location,
+  // @ts-ignore
+  githubLink,
+  // The following may not exist on all interfaces, so we use type assertion or optional chaining
+  // @ts-ignore
   linkToCompany,
+  // @ts-ignore
+  company,
+  // @ts-ignore
+  course,
 }) => {
   return (
     <div className="">

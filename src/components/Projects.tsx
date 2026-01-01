@@ -8,14 +8,15 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import ProjectCard from "./ProjectCard";
 import ProjectDetailsCard from "./ProjectDetailsCard";
-import type ProjectDetailsInterface from "../interface/ProjectDetailsInterface";
+import type ProjectDetails from "../interface/ProjectDetailsInterface";
 import getProjectDescriptionData from "../utils/ProjectDescriptions";
 
 const Projects: React.FC<ModalProp> = ({ onHide }) => {
-  const [selectedProject, setSelectedProject] =
-    useState<ProjectDetailsInterface | null>(null);
+  const [selectedProject, setSelectedProject] = useState<ProjectDetails | null>(
+    null
+  );
 
-  const handleProjectClick = (project: ProjectDetailsInterface) => {
+  const handleProjectClick = (project: ProjectDetails) => {
     setSelectedProject(project);
   };
 
@@ -55,7 +56,12 @@ const Projects: React.FC<ModalProp> = ({ onHide }) => {
                   title="Bed Fall Detection Sensor"
                   alt=""
                   description="I developed a bed fall detection sensor to use AI to detect when a patient would potentially fall out of bed."
-                  image="/textures/projects/work/chinougijutsu.jpg"
+                  image="/textures/projects/work/Chinougijutsu.jpg"
+                  onClick={() =>
+                    handleProjectClick(
+                      getProjectDescriptionData("chinougijutsu")
+                    )
+                  }
                 />
               </Grid>
             </Grid>
@@ -147,17 +153,7 @@ const Projects: React.FC<ModalProp> = ({ onHide }) => {
               <ModalHideButton onHide={handleCloseDetails} />
             </div>
             <div className="window__body">
-              <ProjectDetailsCard
-                title={selectedProject.title}
-                description={selectedProject.description}
-                date={selectedProject.date}
-                location={selectedProject.location}
-                githubLink={selectedProject?.githubLink}
-                technologies={selectedProject.technologies}
-                image={selectedProject.image}
-                learnings={selectedProject.learnings}
-                linkToCompany={selectedProject.linkToCompany}
-              />
+              <ProjectDetailsCard {...selectedProject} />
             </div>
           </div>
         </>

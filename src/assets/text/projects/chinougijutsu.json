@@ -1,0 +1,10 @@
+{
+  "title": " Bed detector system",
+  "description": "While interning at Chinougijutsu, an AI and robotics consulting startup company, I had to research how to track a person in a hospital and nursing home setting to identify when they are about to fall and notify staff to prevent the fall. I looked at many different APIS, such as YOLO and OpenPose, to test how they worked on existing data and which one to use.",
+  "date": "November 2023 - February 2024",
+  "location": "Chinougijutsu - Osaka, Japan",
+  "image": "/textures/projects/work/Chinougijutsu.jpg",
+  "technologies": ["Python, LLM Models, Openpose, YOLO framework"],
+  "learnings": [""],
+  "linkToCompany": "https://www.chinou.co.jp/en/home/"
+}
