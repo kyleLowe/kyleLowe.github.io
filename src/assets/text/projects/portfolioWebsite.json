@@ -1,0 +1,9 @@
+{
+  "title": "3d Portfolio Website",
+  "description": "For this project, I wanted to create a portfolio website to show off the projects that I have done throughout my university and career. I wanted to implement 3d objects into the website as it would be interesting to learn about how to create 3d objects using Blender and use them to build a website. I created my own 3d room using Blender, in which I learnt how to create and render 3d objects to be displayed using three.js, which is a package that deals with creating 3d websites. I have currently implemented the main parts of the website but I am constantly updating the website with implementing new features and talking about more projects that I have done.",
+  "date": "June 2025 - Current",
+  "image": ["/textures/projects/personal/portfolioWebsite/FinalRoom.png", "/textures/projects/personal/portfolioWebsite/FinalRoom2.png", "/textures/projects/personal/portfolioWebsite/FinalRoom3.png", "/textures/projects/personal/portfolioWebsite/FinalRoom4.png"],
+  "technologies": ["Blender, React Typescript, Github Pages, Three.js"],
+  "learnings": ["How to create and render 3d objects in Blender, How to use three.js to implement 3d objects in a website, How to implement animations for a website using three.js, How to use Github Pages to display a GitHub repo as a website"],
+  "github": "https://github.com/kyleLowe/kyleLowe.github.io"
+}

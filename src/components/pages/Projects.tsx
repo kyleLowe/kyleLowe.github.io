@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import ModalHideButton from "./ModalHideButton";
-import type ModalProp from "../interface/ModalInterface";
+import ModalHideButton from "../ModalHideButton";
+import type ModalProp from "../../interface/ModalInterface";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import ProjectCard from "./ProjectCard";
+import ProjectCard from "../ProjectCard";
 import ProjectDetailsCard from "./ProjectDetailsCard";
-import type ProjectDetails from "../interface/ProjectDetailsInterface";
-import getProjectDescriptionData from "../utils/ProjectDescriptions";
+import type ProjectDetails from "../../interface/ProjectDetailsInterface";
+import getProjectDescriptionData from "../../utils/ProjectDescriptions";
 
 const Projects: React.FC<ModalProp> = ({ onHide }) => {
   const [selectedProject, setSelectedProject] = useState<ProjectDetails | null>(
@@ -87,10 +87,10 @@ const Projects: React.FC<ModalProp> = ({ onHide }) => {
                   title="Bed Fall Detection Sensor"
                   alt=""
                   description="I developed a bed fall detection sensor to use AI to detect when a patient would potentially fall out of bed."
-                  image="/textures/projects/work/Chinougijutsu.jpg"
+                  image="/textures/projects/personal/portfolioWebsite/FinalRoom.png"
                   onClick={() =>
                     handleProjectClick(
-                      getProjectDescriptionData("chinougijutsu")
+                      getProjectDescriptionData("portfolioWebsite")
                     )
                   }
                 />

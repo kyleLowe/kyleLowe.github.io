@@ -1,6 +1,6 @@
 import React from "react";
-import ModalHideButton from "./ModalHideButton";
-import type ModalProp from "../interface/ModalInterface";
+import ModalHideButton from "../ModalHideButton";
+import type ModalProp from "../../interface/ModalInterface";
 
 const Socials: React.FC<ModalProp> = ({ onHide }) => {
   return (

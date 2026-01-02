@@ -5,10 +5,10 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 // import { OrbitControls } from './utils/OrbitControls.js';
 import { DRACOLoader } from "three/addons/loaders/DRACOLoader.js";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
-import About from "./components/About";
-import Socials from "./components/Socials";
-import Home from "./components/Home";
-import Projects from "./components/Projects";
+import About from "./components/pages/About";
+import Socials from "./components/pages/Socials";
+import Home from "./components/pages/Home";
+import Projects from "./components/pages/Projects";
 import gsap from "gsap";
 import { Howl } from "howler";
 

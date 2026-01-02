@@ -1,7 +1,8 @@
 // ProjectDetailsCard.tsx
 import React from "react";
 import { Grid, Stack } from "@mui/material";
-import type ProjectDetails from "../interface/ProjectDetailsInterface";
+import type ProjectDetails from "../../interface/ProjectDetailsInterface";
+import LazyLoad from "../LazyLoadSlideshow";
 
 const ProjectDetailsCard: React.FC<ProjectDetails> = ({
   title,
@@ -48,10 +49,17 @@ const ProjectDetailsCard: React.FC<ProjectDetails> = ({
               )}
             </Stack>
           </Grid>
-          <Grid size={8}>
-            {image && (
-              <img src={image} alt={title} className="project-details-image" />
-            )}
+          <Grid size={7}>
+            {image &&
+              (Array.isArray(image) ? (
+                <LazyLoad images={image} />
+              ) : (
+                <img
+                  src={image}
+                  alt={title}
+                  className="project-details-image"
+                />
+              ))}
           </Grid>
           <Stack spacing={1}>
             {description && <span>{description}</span>}
