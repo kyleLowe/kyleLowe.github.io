@@ -84,9 +84,9 @@ const Projects: React.FC<ModalProp> = ({ onHide }) => {
               </Grid>
               <Grid size={4}>
                 <ProjectCard
-                  title="Bed Fall Detection Sensor"
+                  title="3d Portfolio Website"
                   alt=""
-                  description="I developed a bed fall detection sensor to use AI to detect when a patient would potentially fall out of bed."
+                  description="My 3d portfolio website that that contains information about me and also project that I have done"
                   image="/textures/projects/personal/portfolioWebsite/FinalRoom.png"
                   onClick={() =>
                     handleProjectClick(
