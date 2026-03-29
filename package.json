@@ -19,7 +19,7 @@
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-slick": "^0.31.0",
-    "sass": "^1.90.0",
+    "sass": "^1.98.0",
     "slick-carousel": "^1.8.1",
     "three": "^0.179.1"
   },
@@ -35,6 +35,7 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^16.3.0",
+    "sass-embedded": "^1.98.0",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.39.1",
     "vite": "^7.1.2"

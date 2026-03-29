@@ -1,5 +1,20 @@
 @import url("https://fonts.googleapis.com/css2?family=Bitcount+Prop+Single:wght@100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
 
+
+$base-color: #0d0d0d;
+$accent-color-bright: #961a1a;
+$accent-color-dark: 	#732424;
+$complementary-color-dark: #b3832c;
+$complementary-color-light: #f2e852;
+
+:export {
+  baseColor: $base-color;
+  accentColorBright: $accent-color-bright;
+  accentColorDark: $accent-color-dark;
+  complementaryColorDark: $complementary-color-dark;
+  complementaryColorLight: $complementary-color-light;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -163,7 +178,7 @@
 
 pre {
   font-family: monospace;
-  background-color: #8c5afb;
+  background-color: $accent-color-dark;
   color: white;
   padding: 10px;
   white-space: pre;
@@ -202,7 +217,7 @@ pre {
   overflow: hidden;
   z-index: 99999999;
   border: 8px solid 4d21c3;
-  background-color: #4d21c3;
+  background-color: $accent-color-dark;
   transform: perspective(1000px);
   border-radius: 4px;
 }
@@ -217,7 +232,7 @@ pre {
   background-color: transparent;
   padding: 10px 40px;
   outline: none;
-  color: plum;
+  color: $complementary-color-light;
   border-radius: 1.2rem;
   font-size: 2rem;
   border: none;

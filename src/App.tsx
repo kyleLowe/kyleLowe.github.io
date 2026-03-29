@@ -20,7 +20,7 @@ function App() {
       src: ["/sounds/Catherine.mp3"],
       loop: true,
       volume: 0.02,
-    })
+    }),
   );
   const sizes = {
     width: window.innerWidth,
@@ -46,7 +46,7 @@ function App() {
   //Hide and show modals with GSAP useEffect
   useEffect(() => {
     const activeModal = document.querySelector(
-      `.${modalDisplay}.modal`
+      `.${modalDisplay}.modal`,
     ) as HTMLDivElement | null;
 
     if (activeModal) {
@@ -93,28 +93,28 @@ function App() {
 
     //Loading scene elements
     const loadingScreen = document.querySelector(
-      ".loading-screen"
+      ".loading-screen",
     ) as HTMLDivElement;
     const loadingButton = document.querySelector(
-      ".loading-screen-button"
+      ".loading-screen-button",
     ) as HTMLDivElement;
     const loadingButtonWithoutSound = document.querySelector(
-      ".loading-screen-button-nosound"
+      ".loading-screen-button-nosound",
     ) as HTMLDivElement;
 
     manager.onLoad = function () {
-      loadingButton.style.border = "8px solid #2a0f4e";
-      loadingButton.style.background = "#401d49";
-      loadingButton.style.color = "#e6dede";
+      loadingButton.style.border = "8px solid #b3832c";
+      loadingButton.style.background = "#961a1a";
+      loadingButton.style.color = "#f2e852";
       loadingButton.style.boxShadow = "rgba(0, 0, 0, 0.24) 0px 3px 8px";
       loadingButton.textContent = "Enter!";
       loadingButton.style.cursor = "pointer";
       loadingButton.style.transition =
         "transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)";
 
-      loadingButtonWithoutSound.style.border = "8px solid #2a0f4e";
-      loadingButtonWithoutSound.style.background = "#401d49";
-      loadingButtonWithoutSound.style.color = "#e6dede";
+      loadingButtonWithoutSound.style.border = "8px solid #b3832c";
+      loadingButtonWithoutSound.style.background = "#961a1a";
+      loadingButtonWithoutSound.style.color = "#f2e852";
       loadingButtonWithoutSound.style.boxShadow =
         "rgba(0, 0, 0, 0.24) 0px 3px 8px";
       loadingButtonWithoutSound.textContent = "Enter without sound.";
@@ -130,12 +130,12 @@ function App() {
 
         // noSoundButton.textContent = "";
         loadingButton.style.cursor = "default";
-        loadingButton.style.border = "8px solid #6e5e9c";
-        loadingButton.style.background = "#ead7ef";
-        loadingButton.style.color = "#6e5e9c";
+        loadingButton.style.border = "8px solid  #f3af30";
+        loadingButton.style.background = "#961a1a";
+        loadingButton.style.color = " #f3af30";
         loadingButton.style.boxShadow = "none";
         loadingButton.textContent = "Welcome to my website";
-        loadingScreen.style.background = "#ead7ef";
+        loadingScreen.style.background = "#961a1a";
         isDisabled = true;
 
         // if (!withSound) {
@@ -213,7 +213,7 @@ function App() {
             setModalDisplay("home");
           },
         },
-        "-=0.1"
+        "-=0.1",
       );
     }
     const loader = new GLTFLoader(manager);
@@ -230,12 +230,12 @@ function App() {
       20,
       sizes.width / sizes.height,
       0.1,
-      1000
+      1000,
     );
     camera.position.set(
       52.74958451968441,
       17.86980008290608,
-      55.89145232301112
+      55.89145232301112,
     );
 
     const raycaster = new THREE.Raycaster();
@@ -279,7 +279,7 @@ function App() {
     controls.target.set(
       3.595150393092032,
       6.377301327597979,
-      0.6121572902007696
+      0.6121572902007696,
     );
 
     // Preload and configure textures
@@ -307,7 +307,7 @@ function App() {
         pointer.x = (event.touches[0].clientX / window.innerWidth) * 2 - 1;
         pointer.y = -(event.touches[0].clientY / window.innerHeight) * 2 + 1;
       },
-      { passive: false }
+      { passive: false },
     );
 
     window.addEventListener(
@@ -316,7 +316,7 @@ function App() {
         event.preventDefault();
         handleRaycastingInteraction();
       },
-      { passive: false }
+      { passive: false },
     );
 
     function handleRaycastingInteraction() {
@@ -387,13 +387,13 @@ function App() {
               ) {
                 raycasterObjects.push(child);
                 child.userData.intialScale = new THREE.Vector3().copy(
-                  child.scale
+                  child.scale,
                 );
                 child.userData.intialPosition = new THREE.Vector3().copy(
-                  child.position
+                  child.position,
                 );
                 child.userData.intialRotation = new THREE.Euler().copy(
-                  child.rotation
+                  child.rotation,
                 );
                 child.userData.isAnimating = false;
               }
@@ -405,7 +405,7 @@ function App() {
       undefined,
       (error) => {
         console.error("An error happened loading the model:", error);
-      }
+      },
     );
 
     //Event listener for resizing
@@ -466,7 +466,7 @@ function App() {
       if (currentIntersects.length > 0 && modalDisplayRef.current === null) {
         const hoveredObject = currentIntersects[0].object;
         const parentObject = scene.getObjectByName(
-          hoveredObject.parent?.name || ""
+          hoveredObject.parent?.name || "",
         );
 
         // Determine which objects to hover
