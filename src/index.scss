@@ -83,11 +83,11 @@ $complementary-color-light: #f2e852;
   flex-direction: column;
   min-width: 400px;
   min-height: 300px;
-  border: 5px solid #5e2ae9;
-  box-shadow: 15px 15px 0 #5e2ae9;
+  border: 5px solid $accent-color-dark;
+  box-shadow: 15px 15px 0 $accent-color-dark;
   max-width: 65vw; /* responsive on smaller screens */
   max-height: 80vh; /* keep inside viewport */
-  background-color: #7f00ff;
+  background-color: $accent-color-bright;
   border-radius: 3px;
   position: relative;
   z-index: 1001;
@@ -109,7 +109,7 @@ $complementary-color-light: #f2e852;
   background-color: white;
   padding: var(--default-padding);
   overflow-y: auto;
-  scrollbar-color: #4d21c3 #dfd4fd;
+  scrollbar-color: $accent-color-bright #dfd4fd;
   scrollbar-width: thin;
 
   &::-webkit-scrollbar {
@@ -119,12 +119,12 @@ $complementary-color-light: #f2e852;
   }
 
   &::-webkit-scrollbar-thumb {
-    background: #4d21c3;
+    background: $accent-color-bright;
   }
 }
 
 .window__title-bar {
-  background-color: #8c5afb;
+  background-color: $accent-color-bright;
   color: white;
   padding: 13px var(--default-padding);
   display: flex;
@@ -143,7 +143,7 @@ $complementary-color-light: #f2e852;
 
 .window__btn {
   cursor: pointer;
-  background-color: #5e2ae9;
+  background-color: $accent-color-dark;
   width: 20px;
   height: 20px;
   border: none;
@@ -155,7 +155,7 @@ $complementary-color-light: #f2e852;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #ae63e4;
+  color: $accent-color-bright;
 
   &:hover {
     opacity: 1;
