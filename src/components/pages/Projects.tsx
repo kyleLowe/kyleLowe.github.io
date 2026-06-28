@@ -97,47 +97,6 @@ const Projects: React.FC<ModalProp> = ({ onHide }) => {
               </Grid>
             </Grid>
           </Box>
-
-          {/* === University Projects === */}
-          <Box sx={{ marginBottom: 4 }}>
-            <Typography variant="h6" sx={{ marginBottom: 2 }}>
-              University Projects
-            </Typography>
-            <Grid container spacing={2}>
-              <Grid size={4}>
-                <ProjectCard
-                  title="Part 4 Project - Common Software Vulnerabilities"
-                  alt=""
-                  description="I developed an internal admin tool that is used by staff to manage data at the company as well as day to day operations."
-                  image="/textures/projects/work/Hidden.jpg"
-                />
-              </Grid>
-              <Grid size={4}>
-                <ProjectCard
-                  title="Pantry Pals"
-                  alt=""
-                  description="I developed an internal admin tool that is used by staff to manage data at the company as well as day to day operations."
-                  image="/textures/projects/work/Hidden.jpg"
-                />
-              </Grid>
-              <Grid size={4}>
-                <ProjectCard
-                  title="Munch Match"
-                  alt=""
-                  description="I developed an internal admin tool that is used by staff to manage data at the company as well as day to day operations."
-                  image="/textures/projects/work/Hidden.jpg"
-                />
-              </Grid>
-              <Grid size={4}>
-                <ProjectCard
-                  title="Quick draw"
-                  alt=""
-                  description="I developed an internal admin tool that is used by staff to manage data at the company as well as day to day operations."
-                  image="/textures/projects/work/Hidden.jpg"
-                />
-              </Grid>
-            </Grid>
-          </Box>
         </div>
       </div>
 
