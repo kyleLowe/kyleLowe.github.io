@@ -1,0 +1,10 @@
+{
+  "title": "Software Development and IT support",
+  "description": "I currently work at Two Point Zero, a company that provides IT solutions to companies around New Zealand. I worked on developing web tools used internally at the company, using HTML, CSS, and JavaScript for the front end and Python for the back end, hosted on an in-house Linux server. I am currently working on migrating legacy code used at the company and developing new software that aligns with the current frameworks. I also provide IT support to clients by setting up and installing hardware.",
+  "date": "February 2026 - Current",
+  "location": "TwoPointZero - Auckland, New Zealand",
+  "image": "/textures/projects/work/TwoPointZero.png",
+  "technologies": ["HTML, CSS, JavaScript, Linux, Bootstrap"],
+  "learnings": [""],
+  "linkToCompany": "https://twopointzero.co/"
+}

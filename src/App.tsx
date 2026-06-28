@@ -527,7 +527,7 @@ function App() {
           top: "24px",
           right: "32px",
           zIndex: 100000,
-          background: "#8c5afb",
+          background: "#961a1a",
           color: "#fff",
           border: "none",
           borderRadius: "50%",

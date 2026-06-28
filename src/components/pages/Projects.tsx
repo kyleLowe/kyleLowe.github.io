@@ -40,6 +40,19 @@ const Projects: React.FC<ModalProp> = ({ onHide }) => {
             <Grid container spacing={2}>
               <Grid size={4}>
                 <ProjectCard
+                  title="Software Development and IT support"
+                  alt=""
+                  description="I worked on migrating legacy code for internal web tools used at the company, as well as setting up and installing hardware for clients."
+                  image="/textures/projects/work/TwoPointZero.png"
+                  onClick={() =>
+                    handleProjectClick(
+                      getProjectDescriptionData("twoPointZero"),
+                    )
+                  }
+                />
+              </Grid>
+              <Grid size={4}>
+                <ProjectCard
                   title="Internal Admin Tool"
                   alt=""
                   description="I developed an internal admin tool that is used by staff to manage data at the company as well as day to day operations."
