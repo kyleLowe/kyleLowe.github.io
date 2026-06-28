@@ -220,9 +220,9 @@ function App() {
     loader.setDRACOLoader(dracoLoader);
 
     const textureMap = {
-      First: "textures/TextureSet1.webp",
-      Second: "textures/TextureSet2.webp",
-      Third: "textures/TextureSet3.webp",
+      First: "textures/room/TextureSet1.webp",
+      Second: "textures/room/TextureSet2.webp",
+      Third: "textures/room/TextureSet3.webp",
     };
 
     const scene = new THREE.Scene();
