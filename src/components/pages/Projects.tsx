@@ -11,7 +11,7 @@ import getProjectDescriptionData from "../../utils/ProjectDescriptions";
 
 const Projects: React.FC<ModalProp> = ({ onHide }) => {
   const [selectedProject, setSelectedProject] = useState<ProjectDetails | null>(
-    null
+    null,
   );
 
   const handleProjectClick = (project: ProjectDetails) => {
@@ -57,7 +57,7 @@ const Projects: React.FC<ModalProp> = ({ onHide }) => {
                   image="/textures/projects/work/Chinougijutsu.jpg"
                   onClick={() =>
                     handleProjectClick(
-                      getProjectDescriptionData("chinougijutsu")
+                      getProjectDescriptionData("chinougijutsu"),
                     )
                   }
                 />
@@ -90,7 +90,7 @@ const Projects: React.FC<ModalProp> = ({ onHide }) => {
                   image="/textures/projects/personal/portfolioWebsite/FinalRoom.png"
                   onClick={() =>
                     handleProjectClick(
-                      getProjectDescriptionData("portfolioWebsite")
+                      getProjectDescriptionData("portfolioWebsite"),
                     )
                   }
                 />

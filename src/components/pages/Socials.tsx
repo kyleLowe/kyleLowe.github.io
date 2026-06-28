@@ -24,7 +24,7 @@ const Socials: React.FC<ModalProp> = ({ onHide }) => {
                   rel="noopener noreferrer"
                 >
                   <img
-                    src="public/textures/projects/techicons/linkedin.svg"
+                    src="/textures/projects/techIcons/linkedin.svg"
                     alt="LinkedIn"
                     style={{ width: 128, height: 128, verticalAlign: "middle" }}
                   />
@@ -40,7 +40,7 @@ const Socials: React.FC<ModalProp> = ({ onHide }) => {
                   href="https://github.com/kyleLowe"
                 >
                   <img
-                    src="public/textures/projects/techicons/github.svg"
+                    src="/textures/projects/techIcons/github.svg"
                     alt="GitHub"
                     style={{ width: 128, height: 128, verticalAlign: "middle" }}
                   />
@@ -57,7 +57,7 @@ const Socials: React.FC<ModalProp> = ({ onHide }) => {
                   href="https://github.com/klow358"
                 >
                   <img
-                    src="public/textures/projects/techicons/github.svg"
+                    src="/textures/projects/techIcons/github.svg"
                     alt="GitHub"
                     style={{ width: 128, height: 128, verticalAlign: "middle" }}
                   />
